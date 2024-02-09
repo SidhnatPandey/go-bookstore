@@ -1,23 +1,16 @@
 package models
 
 import (
-	"github.com/SidhnatPandey/go-bookstore/pkg/config"
 	"github.com/jinzhu/gorm"
 )
 
 var DB *gorm.DB
 
 type Book struct {
-	gorm.Model
-	Name        string `gorm:""json:"name"`
-	Author      string `json:"author"`
-	Publication string `json:"publication"`
-}
-
-func init() {
-	config.Connect()
-	DB = config.GetDB()
-	DB.AutoMigrate(&Book{})
+	ID          int64  `gorm:"column:id" json:"id,omitempty"`
+	Name        string `gorm:"column:name" json:"name"`
+	Author      string `gorm:"column:author" json:"author"`
+	Publication string `gorm:"column:publication" json:"publication"`
 }
 
 func (b *Book) CreateBook() *Book {

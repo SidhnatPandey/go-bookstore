@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/SidhnatPandey/go-bookstore/pkg/config"
 	"github.com/SidhnatPandey/go-bookstore/pkg/models"
 	"github.com/SidhnatPandey/go-bookstore/pkg/utils"
 	"github.com/gorilla/mux"
@@ -53,10 +54,15 @@ func GetBookById(w http.ResponseWriter, r *http.Request) {
 func CreateBook(w http.ResponseWriter, r *http.Request) {
 	CreateBook := &models.Book{}
 	utils.ParseBody(r, CreateBook)
-	b := CreateBook.CreateBook()
-	res, _ := json.Marshal(b)
+	// b := CreateBook.CreateBook()
+	sql := `insert into sid.book (publication, author, name) values(?, ?, ?)`
+	result := config.DB.Exec(sql, CreateBook.Publication, CreateBook.Author, CreateBook.Name)
+	if result.Error != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Error inserting data" + result.Error.Error()))
+	}
 	w.WriteHeader(http.StatusOK)
-	w.Write(res)
+	w.Write([]byte("Succefully inserted data"))
 }
 
 func DeleteBook(w http.ResponseWriter, r *http.Request) {
