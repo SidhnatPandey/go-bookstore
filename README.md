@@ -30,20 +30,20 @@ To run this application locally, you'll need to have Go installed on your system
 
 1. Clone this repository to your local machine:
 
-```bash
+
 git clone https://github.com/SidhnatPandey/go-bookstore.git
 
 2. Clone this repository to your local machine:
 
-```bash
+
 cd go-bookstore
 
 3. Clone this repository to your local machine:
 
-```bash
+
 go mod tidy
 
 4. Clone this repository to your local machine:
 
-```bash
+
 go run main.go
