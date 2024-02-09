@@ -11,7 +11,7 @@ import (
 var DB *gorm.DB
 
 func Connect() {
-	connStr := "root:Password@1@tcp(127.0.0.1:3307)/sid?parseTime=true"
+	connStr := "root:<YOUR-PASSWORD>@tcp(127.0.0.1:3307)/<TABLE-NAME>?parseTime=true"
 
 	client, err := gorm.Open(mysql.Open(connStr), &gorm.Config{})
 	//d, err := gorm.Open("mysql", "sidhantpandey:Sidhant@1/simplerest?charset=utf8&parseTime=True&loc=Local")
